@@ -18,7 +18,7 @@ class Running inherits Rutina {
     }
    }
 
-    override method intensidad() { return intensidad }
+  override method intensidad() { return intensidad }
 }
 
 class Maraton inherits Running{
