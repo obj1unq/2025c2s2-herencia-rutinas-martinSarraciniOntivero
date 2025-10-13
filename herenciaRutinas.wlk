@@ -39,5 +39,7 @@ class RemoCompeticion inherits Remo{
   override method intensidad(){
     return 1.7
   }
-  
+  override method descanso(tiempo){
+    return 2.max(tiempo/5 -3)
+  }
 }

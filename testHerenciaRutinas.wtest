@@ -15,8 +15,8 @@ describe "Runing"{
 }
 
 describe "Maraton" {
-           const maratonTest = new Maraton(intensidad = 1.5)
-            const maratonTest2 = new Maraton(intensidad = 1.5)
+           const maratonTest = new Maraton()
+            const maratonTest2 = new Maraton()
   test "practicar 5 minutos" {
     assert.equals(900,   maratonTest.caloriasBajadas(5))
   }
@@ -26,7 +26,21 @@ describe "Maraton" {
 }
 
 describe "Remo" {
-  test "practicar " {
-    
+  const remo = new Remo()
+  test "practicar 5 minutos " {
+    assert.equals(520, remo.caloriasBajadas(5))
+  }
+  test "practicar 90 minutos " {
+    assert.equals(9360, remo.caloriasBajadas(90))
+  }
+}
+
+describe "RemoCompeticion"{
+  const remoCompeticion = new RemoCompeticion()
+  test "practicar 5 minutos"{
+    assert.equals(510, remoCompeticion.caloriasBajadas(5))
+  }
+  test "practicar 90 minutos"{
+    assert.equals(12750, remoCompeticion.caloriasBajadas(90))
   }
 }
