@@ -1,6 +1,5 @@
 class Rutina{ 
-    var property caloriasBajadas = 0
-    method calcularCaloriasBajadas(tiempo){
+    method caloriasBajadas(tiempo){
         return 100*(tiempo - self.descanso(tiempo)) * self.intensidad()
    }
 method intensidad()
@@ -22,20 +21,23 @@ class Running inherits Rutina {
 }
 
 class Maraton inherits Running{
-    override method caloriasBajadas(){
-        return super() * 2
+     override method caloriasBajadas(tiempo){
+        return super(tiempo) * 2
     }
 }
 
 class Remo inherits Rutina {
-   method descanso(tiempo){
+   override method descanso(tiempo){
      return tiempo /5
   }
-   method intensidad(){
+   override method intensidad(){
      return  1.3 
   }
 }
 
-class RemoCompeticion inherits Rutina{
+class RemoCompeticion inherits Remo{
+  override method intensidad(){
+    return 1.7
+  }
   
 }
