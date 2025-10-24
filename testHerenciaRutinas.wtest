@@ -84,22 +84,22 @@ describe "persona atleta" {
   const remarDelta = new Remo()
   const remarEnCaminoDeRemos = new RemoCompeticion()
   test "correr en la playa" {
-    assert.equals(39.725,bob.pesoQuePierdeAtletaConRutina(correrEnLaPlaya))
-    bob.ejercitarAtletaCon(correrEnLaPlaya)
+    assert.equals(39.725,bob.pesoQuePierdeConRutina(correrEnLaPlaya))
+    bob.ejercitarRutina(correrEnLaPlaya)
     assert.equals(39.725, bob.peso())
   }
   test "correr maraton BA" {
-    assert.equals(37.812,bob.pesoQuePierdeAtletaConRutina(maratonBA))
-    bob.ejercitarAtletaCon(maratonBA)
+    assert.equals(37.812,bob.pesoQuePierdeConRutina(maratonBA))
+    bob.ejercitarRutina(maratonBA)
     assert.equals(37.812, bob.peso())
   }
   test "remar en el delta" {
-    assert.throwsException({bob.pesoQuePierdeAtletaConRutina(remarDelta)})
-    assert.throwsException({bob.ejercitarAtletaCon(remarDelta)})
+    assert.throwsException({bob.pesoQuePierdeConRutina(remarDelta)})
+    assert.throwsException({bob.ejercitarRutina(remarDelta)})
   }
   test "remar en camino de remos" {
-    assert.equals(39.406,bob.pesoQuePierdeAtletaConRutina(remarEnCaminoDeRemos))
-    bob.ejercitarAtletaCon(remarEnCaminoDeRemos)
+    assert.equals(39.406,bob.pesoQuePierdeConRutina(remarEnCaminoDeRemos))
+    bob.ejercitarRutina(remarEnCaminoDeRemos)
     assert.equals(39.406, bob.peso())
   }
 }
