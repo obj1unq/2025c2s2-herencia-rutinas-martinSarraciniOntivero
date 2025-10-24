@@ -1,5 +1,5 @@
 import herenciaRutinas.*
-
+import personas.*
 
 describe "Runing"{
             const rutinaRuning = new Running(intensidad = 1.2)
@@ -73,7 +73,33 @@ describe "persona con sedentarismo"{
     assert.equals(59.927, calamardo.peso())
   }
   test "no puede hacer la rutina"{
-    calamardoFlaco.ejercitarRutina(correrEnLaPlaya)
-    assert.equals("no hace falta ejercitarse", calamardoFlaco.peso())
-  }// hay error, corregir
+    assert.throwsException({calamardoFlaco.ejercitarRutina(correrEnLaPlaya)})
+  }
+}
+
+describe "persona atleta" {
+  const bob = new PersonaAtleta(peso = 40)
+  const correrEnLaPlaya = new Running(intensidad =1.2)
+  const maratonBA = new Maraton()
+  const remarDelta = new Remo()
+  const remarEnCaminoDeRemos = new RemoCompeticion()
+  test "correr en la playa" {
+    assert.equals(39.725,bob.pesoQuePierdeAtletaConRutina(correrEnLaPlaya))
+    bob.ejercitarAtletaCon(correrEnLaPlaya)
+    assert.equals(39.725, bob.peso())
+  }
+  test "correr maraton BA" {
+    assert.equals(37.812,bob.pesoQuePierdeAtletaConRutina(maratonBA))
+    bob.ejercitarAtletaCon(maratonBA)
+    assert.equals(37.812, bob.peso())
+  }
+  test "remar en el delta" {
+    assert.throwsException({bob.pesoQuePierdeAtletaConRutina(remarDelta)})
+    assert.throwsException({bob.ejercitarAtletaCon(remarDelta)})
+  }
+  test "remar en camino de remos" {
+    assert.equals(39.406,bob.pesoQuePierdeAtletaConRutina(remarEnCaminoDeRemos))
+    bob.ejercitarAtletaCon(remarEnCaminoDeRemos)
+    assert.equals(39.406, bob.peso())
+  }
 }
