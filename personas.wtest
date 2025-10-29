@@ -1,0 +1,61 @@
+import herenciaRutinas.*
+import personas.*
+
+describe "persona con sedentarismo"{
+  const calamardo =new PersonaSedentaria(tiempo = 5, peso = 60)
+  const calamardoFlaco =new PersonaSedentaria(tiempo = 5, peso = 40)
+  const correrEnLaPlaya = new Running(intensidad =1.2)
+  const maratonBA = new Maraton()
+  const remarDelta = new Remo()
+  const remarEnCaminoDeRemos = new RemoCompeticion()
+  test "correr en la playa"{
+    assert.equals(59.948 , calamardo.pesoQuePierdeConRutina(correrEnLaPlaya))
+    calamardo.ejercitarRutina(correrEnLaPlaya)
+    assert.equals(59.948, calamardo.peso())
+  }
+  test "correr el Maraton BA"{
+    assert.equals(59.871 , calamardo.pesoQuePierdeConRutina(maratonBA))
+    calamardo.ejercitarRutina(maratonBA)
+    assert.equals(59.871, calamardo.peso())
+  }
+  test "Remar en el delta"{
+    assert.equals(59.925 , calamardo.pesoQuePierdeConRutina(remarDelta))
+    calamardo.ejercitarRutina(remarDelta)
+    assert.equals(59.925, calamardo.peso())
+  }
+  test "Remar en el camino de los remeros"{
+    assert.equals(59.927 , calamardo.pesoQuePierdeConRutina(remarEnCaminoDeRemos))
+    calamardo.ejercitarRutina(remarEnCaminoDeRemos)
+    assert.equals(59.927, calamardo.peso())
+  }
+  test "no puede hacer la rutina"{
+    assert.throwsException({calamardoFlaco.ejercitarRutina(correrEnLaPlaya)})
+  }
+}
+
+describe "persona atleta" {
+  const bob = new PersonaAtleta(peso = 40)
+  const correrEnLaPlaya = new Running(intensidad =1.2)
+  const maratonBA = new Maraton()
+  const remarDelta = new Remo()
+  const remarEnCaminoDeRemos = new RemoCompeticion()
+  test "correr en la playa" {
+    assert.equals(39.725,bob.pesoQuePierdeConRutina(correrEnLaPlaya))
+    bob.ejercitarRutina(correrEnLaPlaya)
+    assert.equals(39.725, bob.peso())
+  }
+  test "correr maraton BA" {
+    assert.equals(37.812,bob.pesoQuePierdeConRutina(maratonBA))
+    bob.ejercitarRutina(maratonBA)
+    assert.equals(37.812, bob.peso())
+  }
+  test "remar en el delta" {
+    assert.throwsException({bob.pesoQuePierdeConRutina(remarDelta)})
+    assert.throwsException({bob.ejercitarRutina(remarDelta)})
+  }
+  test "remar en camino de remos" {
+    assert.equals(39.406,bob.pesoQuePierdeConRutina(remarEnCaminoDeRemos))
+    bob.ejercitarRutina(remarEnCaminoDeRemos)
+    assert.equals(39.406, bob.peso())
+  }
+}
